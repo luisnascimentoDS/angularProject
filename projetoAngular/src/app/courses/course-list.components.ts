@@ -1,36 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from './course';
+import { CourseService } from './course.service';
 
 @Component({
-    selector: 'app-course-list',
-    templateUrl: './course-list.components.html'
+  selector: 'app-course-list',
+  templateUrl: './course-list.components.html'
 })
 export class CourseListComponent implements OnInit {
-    
-    courses: Course[] = [];
 
-    ngOnInit(): void {
-        this.courses = [
-            {
-                id: 1,
-                name: 'Angular Forms',
-                imageUrl: '/assets/images/forms.png',
-                price: 99.99,
-                code: 'XPS-8756',
-                duration: 120,
-                rating: 4.5,
-                releaseDate: 'November, 2, 2019'
-            },
-            {
-                id: 2,
-                name: 'Angular HTTP',
-                imageUrl: '/assets/images/http.png',
-                price: 45.99,
-                code: 'LKL-1094',
-                duration: 120,
-                rating: 4,
-                releaseDate: 'December, 4, 2019'
-            }
-        ]
-    }
+  filteredCourses: Course[] = [];
+  // tslint:disable-next-line:variable-name
+  _courses: Course[] = [];
+  // tslint:disable-next-line:variable-name
+  _filterBy: string;
+
+  constructor(private courseServie: CourseService) { }
+
+  ngOnInit(): void {
+    this._courses = this.courseServie.retrieveAll();
+    this.filteredCourses = this._courses;
+  }
+
+  get filter() {
+    return this._filterBy;
+  }
+
+  set filter(value: string) {
+    this._filterBy = value;
+    // tslint:disable-next-line:max-line-length
+    this.filteredCourses = this._courses.filter((course: Course) => course.name.toLocaleLowerCase().indexOf(this._filterBy.toLocaleLowerCase()) > -1);
+  }
 }
