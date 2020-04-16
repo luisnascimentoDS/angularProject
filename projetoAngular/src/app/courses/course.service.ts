@@ -11,7 +11,8 @@ export class CourseService{
     }
 }
 
-var COURSES: Course[] = [
+// tslint:disable-next-line:prefer-const
+let COURSES: Course[] = [
     {
         id: 1,
         name: 'Angular: CLI',
