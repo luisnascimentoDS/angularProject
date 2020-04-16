@@ -9,13 +9,15 @@ import { StarComponent } from './star/star.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './error-404/error-404.component';
+import { ReplacePipe } from './pipe/replace.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     CourseListComponent,
     StarComponent,
-    NavBarComponent
+    NavBarComponent,
+    ReplacePipe
   ],
   imports: [
     BrowserModule,
