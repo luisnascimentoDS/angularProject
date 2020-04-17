@@ -10,6 +10,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './error-404/error-404.component';
 import { ReplacePipe } from './pipe/replace.pipe';
+import { CourseInfoComponent } from './courses/course-info.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ReplacePipe } from './pipe/replace.pipe';
     CourseListComponent,
     StarComponent,
     NavBarComponent,
-    ReplacePipe
+    ReplacePipe,
+    CourseInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,9 @@ import { ReplacePipe } from './pipe/replace.pipe';
       },
       {
         path: 'courses', component: CourseListComponent
+      },
+      {
+        path: 'courses/info/:id', component: CourseInfoComponent
       },
       {
         path: '**', component: Error404Component
